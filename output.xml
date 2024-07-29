@@ -1,0 +1,849 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.12.3 on win32)" generated="2024-07-29T00:19:32.875496" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Users\wesle\Documents\DesafioAutomacao\tests">
+<suite id="s1-s1" name="Api" source="C:\Users\wesle\Documents\DesafioAutomacao\tests\api">
+<suite id="s1-s1-s1" name="Desafio Api" source="C:\Users\wesle\Documents\DesafioAutomacao\tests\api\desafio_api.robot">
+<test id="s1-s1-s1-t1" name="Teste Completo" line="13">
+<kw name="Criar Usuário" owner="keywords_api">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-07-29T00:19:33.347924" level="INFO">Creating Session using : alias=api, url=https://reqres.in/api, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>api</arg>
+<arg>${BASE_URL}</arg>
+<arg>verify=False</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-07-29T00:19:33.347924" elapsed="0.000000"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-07-29T00:19:33.348924" level="INFO">${corpo} = {'name': 'NomeTeste', 'job': 'TrabalhoTeste'}</msg>
+<var>${corpo}</var>
+<arg>name=${nome}</arg>
+<arg>job=${trabalho}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-07-29T00:19:33.348924" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2024-07-29T00:19:33.917616" level="INFO">POST Request : url=https://reqres.in/api/users 
+ path_url=/api/users 
+ headers={'User-Agent': 'python-requests/2.32.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '45', 'Content-Type': 'application/json'} 
+ body=b'{"name": "NomeTeste", "job": "TrabalhoTeste"}' 
+ </msg>
+<msg time="2024-07-29T00:19:33.918616" level="INFO">POST Response : url=https://reqres.in/api/users 
+ status=201, reason=Created 
+ headers={'Date': 'Mon, 29 Jul 2024 03:20:00 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '92', 'Connection': 'keep-alive', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1722223199&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=yrfUWHpK%2FY%2FN9I9bqHv8widYv2HlYuqL0qC9eBSEmlc%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1722223199&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=yrfUWHpK%2FY%2FN9I9bqHv8widYv2HlYuqL0qC9eBSEmlc%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Etag': 'W/"5c-K7tf3PcP2dNsSUZz+w8YbZs8PgI"', 'Via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Server': 'cloudflare', 'CF-RAY': '8aa9f875bd515228-UDI'} 
+ body={"name":"NomeTeste","job":"TrabalhoTeste","id":"683","createdAt":"2024-07-29T03:19:59.995Z"} 
+ </msg>
+<msg time="2024-07-29T00:19:33.918616" level="INFO">C:\Users\wesle\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py:1103: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2024-07-29T00:19:33.918616" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>/users</arg>
+<arg>json=${corpo}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-07-29T00:19:33.348924" elapsed="0.569692"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:33.919617" level="INFO">201</msg>
+<arg>${response.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:33.918616" elapsed="0.001001"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:33.919617" level="INFO">{"name":"NomeTeste","job":"TrabalhoTeste","id":"683","createdAt":"2024-07-29T03:19:59.995Z"}</msg>
+<arg>${response.text}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:33.919617" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-07-29T00:19:33.920618" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-07-29T00:19:33.919617" elapsed="0.001001"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-07-29T00:19:33.920618" level="INFO">${corpo} = {'name': 'NomeTeste', 'job': 'TrabalhoTeste', 'id': '683', 'createdAt': '2024-07-29T03:19:59.995Z'}</msg>
+<var>${corpo}</var>
+<arg>json.loads('''${response.text}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-07-29T00:19:33.920618" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${corpo}</arg>
+<arg>id</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2024-07-29T00:19:33.920618" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${corpo}</value>
+<status status="PASS" start="2024-07-29T00:19:33.920618" elapsed="0.000000"/>
+</return>
+<msg time="2024-07-29T00:19:33.920618" level="INFO">${corpo_criar} = {'name': 'NomeTeste', 'job': 'TrabalhoTeste', 'id': '683', 'createdAt': '2024-07-29T03:19:59.995Z'}</msg>
+<var>${corpo_criar}</var>
+<arg>${NOME}</arg>
+<arg>${TRABALHO}</arg>
+<status status="PASS" start="2024-07-29T00:19:33.347924" elapsed="0.572694"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-29T00:19:33.921619" level="INFO">${ID_USUARIO} = 683</msg>
+<var>${ID_USUARIO}</var>
+<arg>${corpo_criar['id']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-29T00:19:33.921619" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:33.921619" level="INFO">ID do usuário criado: 683</msg>
+<arg>ID do usuário criado: ${ID_USUARIO}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:33.921619" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2024-07-29T00:19:33.922620" level="INFO">Length is 3.</msg>
+<arg>${ID_USUARIO}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2024-07-29T00:19:33.922620" elapsed="0.000000"/>
+</kw>
+<kw name="Listar Usuarios" owner="keywords_api">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-07-29T00:19:33.922620" level="INFO">Creating Session using : alias=api, url=https://reqres.in/api, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>api</arg>
+<arg>${BASE_URL}</arg>
+<arg>verify=False</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-07-29T00:19:33.922620" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2024-07-29T00:19:34.003974" level="INFO">GET Request : url=https://reqres.in/api/users 
+ path_url=/api/users 
+ headers={'User-Agent': 'python-requests/2.32.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2024-07-29T00:19:34.003974" level="INFO">GET Response : url=https://reqres.in/api/users 
+ status=200, reason=OK 
+ headers={'Date': 'Mon, 29 Jul 2024 03:20:00 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1722193178&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=88DNaDGO1eF%2BgDiR%2FyGDXAyNjlcwfuTKQSm2PERgyNw%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1722193178&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=88DNaDGO1eF%2BgDiR%2FyGDXAyNjlcwfuTKQSm2PERgyNw%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Etag': 'W/"3e4-2RLXvr5wTg9YQ6aH95CkYoFNuO8"', 'Via': '1.1 vegur', 'Cache-Control': 'max-age=14400', 'CF-Cache-Status': 'HIT', 'Age': '2027', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '8aa9f87938425226-UDI', 'Content-Encoding': 'gzip'} 
+ body={"page":1,"per_page":6,"total":12,"total_pages":2,"data":[{"id":1,"email":"george.bluth@reqres.in","first_name":"George","last_name":"Bluth","avatar":"https://reqres.in/img/faces/1-image.jpg"},{"id":2,"email":"janet.weaver@reqres.in","first_name":"Janet","last_name":"Weaver","avatar":"https://reqres.in/img/faces/2-image.jpg"},{"id":3,"email":"emma.wong@reqres.in","first_name":"Emma","last_name":"Wong","avatar":"https://reqres.in/img/faces/3-image.jpg"},{"id":4,"email":"eve.holt@reqres.in","first_name":"Eve","last_name":"Holt","avatar":"https://reqres.in/img/faces/4-image.jpg"},{"id":5,"email":"charles.morris@reqres.in","first_name":"Charles","last_name":"Morris","avatar":"https://reqres.in/img/faces/5-image.jpg"},{"id":6,"email":"tracey.ramos@reqres.in","first_name":"Tracey","last_name":"Ramos","avatar":"https://reqres.in/img/faces/6-image.jpg"}],"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}} 
+ </msg>
+<msg time="2024-07-29T00:19:34.003974" level="INFO">C:\Users\wesle\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py:1103: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2024-07-29T00:19:34.004977" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>/users</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-07-29T00:19:33.922620" elapsed="0.082357"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.004977" level="INFO">Solicitação GET: url=https://reqres.in/api/users</msg>
+<arg>Solicitação GET: url=${BASE_URL}/users</arg>
+<arg>level=INFO</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.004977" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.005977" level="INFO">Resposta GET: 200</msg>
+<arg>Resposta GET: ${response.status_code}</arg>
+<arg>level=INFO</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.004977" elapsed="0.001000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.005977" level="INFO">Resposta GET: {"page":1,"per_page":6,"total":12,"total_pages":2,"data":[{"id":1,"email":"george.bluth@reqres.in","first_name":"George","last_name":"Bluth","avatar":"https://reqres.in/img/faces/1-image.jpg"},{"id":2,"email":"janet.weaver@reqres.in","first_name":"Janet","last_name":"Weaver","avatar":"https://reqres.in/img/faces/2-image.jpg"},{"id":3,"email":"emma.wong@reqres.in","first_name":"Emma","last_name":"Wong","avatar":"https://reqres.in/img/faces/3-image.jpg"},{"id":4,"email":"eve.holt@reqres.in","first_name":"Eve","last_name":"Holt","avatar":"https://reqres.in/img/faces/4-image.jpg"},{"id":5,"email":"charles.morris@reqres.in","first_name":"Charles","last_name":"Morris","avatar":"https://reqres.in/img/faces/5-image.jpg"},{"id":6,"email":"tracey.ramos@reqres.in","first_name":"Tracey","last_name":"Ramos","avatar":"https://reqres.in/img/faces/6-image.jpg"}],"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}}</msg>
+<arg>Resposta GET: ${response.text}</arg>
+<arg>level=INFO</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.005977" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.006978" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.006978" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.007979" level="INFO">${corpo} = {'page': 1, 'per_page': 6, 'total': 12, 'total_pages': 2, 'data': [{'id': 1, 'email': 'george.bluth@reqres.in', 'first_name': 'George', 'last_name': 'Bluth', 'avatar': 'https://reqres.in/img/faces/1-i...</msg>
+<var>${corpo}</var>
+<arg>json.loads('''${response.text}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.006978" elapsed="0.001001"/>
+</kw>
+<return>
+<value>${corpo}</value>
+<status status="PASS" start="2024-07-29T00:19:34.007979" elapsed="0.000000"/>
+</return>
+<msg time="2024-07-29T00:19:34.007979" level="INFO">${corpo_listar} = {'page': 1, 'per_page': 6, 'total': 12, 'total_pages': 2, 'data': [{'id': 1, 'email': 'george.bluth@reqres.in', 'first_name': 'George', 'last_name': 'Bluth', 'avatar': 'https://reqres.in/img/faces/1-i...</msg>
+<var>${corpo_listar}</var>
+<status status="PASS" start="2024-07-29T00:19:33.922620" elapsed="0.085359"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.007979" level="INFO">Lista de usuários: {'page': 1, 'per_page': 6, 'total': 12, 'total_pages': 2, 'data': [{'id': 1, 'email': 'george.bluth@reqres.in', 'first_name': 'George', 'last_name': 'Bluth', 'avatar': 'https://reqres.in/img/faces/1-image.jpg'}, {'id': 2, 'email': 'janet.weaver@reqres.in', 'first_name': 'Janet', 'last_name': 'Weaver', 'avatar': 'https://reqres.in/img/faces/2-image.jpg'}, {'id': 3, 'email': 'emma.wong@reqres.in', 'first_name': 'Emma', 'last_name': 'Wong', 'avatar': 'https://reqres.in/img/faces/3-image.jpg'}, {'id': 4, 'email': 'eve.holt@reqres.in', 'first_name': 'Eve', 'last_name': 'Holt', 'avatar': 'https://reqres.in/img/faces/4-image.jpg'}, {'id': 5, 'email': 'charles.morris@reqres.in', 'first_name': 'Charles', 'last_name': 'Morris', 'avatar': 'https://reqres.in/img/faces/5-image.jpg'}, {'id': 6, 'email': 'tracey.ramos@reqres.in', 'first_name': 'Tracey', 'last_name': 'Ramos', 'avatar': 'https://reqres.in/img/faces/6-image.jpg'}], 'support': {'url': 'https://reqres.in/#support-heading', 'text': 'To keep ReqRes free, contributions towards server costs are appreciated!'}}</msg>
+<arg>Lista de usuários: ${corpo_listar}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.007979" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2024-07-29T00:19:34.008980" level="INFO">${USUARIO} = [{'id': 1, 'email': 'george.bluth@reqres.in', 'first_name': 'George', 'last_name': 'Bluth', 'avatar': 'https://reqres.in/img/faces/1-image.jpg'}, {'id': 2, 'email': 'janet.weaver@reqres.in', 'first_na...</msg>
+<var>${USUARIO}</var>
+<arg>${corpo_listar}</arg>
+<arg>data</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.008980" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2024-07-29T00:19:34.009981" level="INFO">${ID_USUARIO_LISTADO} = 1</msg>
+<var>${ID_USUARIO_LISTADO}</var>
+<arg>${USUARIO[0]}</arg>
+<arg>id</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.008980" elapsed="0.001001"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.009981" level="INFO">ID do usuário listado: 1</msg>
+<arg>ID do usuário listado: ${ID_USUARIO_LISTADO}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.009981" elapsed="0.000000"/>
+</kw>
+<kw name="Consultar Usuário" owner="keywords_api">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-07-29T00:19:34.010982" level="INFO">Creating Session using : alias=api, url=https://reqres.in/api, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>api</arg>
+<arg>${BASE_URL}</arg>
+<arg>verify=False</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-07-29T00:19:34.010982" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.010982" level="INFO">${url} = /users/1</msg>
+<var>${url}</var>
+<arg>/users/${id_usuario}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.010982" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2024-07-29T00:19:34.096325" level="INFO">GET Request : url=https://reqres.in/api/users/1 
+ path_url=/api/users/1 
+ headers={'User-Agent': 'python-requests/2.32.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2024-07-29T00:19:34.096325" level="INFO">GET Response : url=https://reqres.in/api/users/1 
+ status=200, reason=OK 
+ headers={'Date': 'Mon, 29 Jul 2024 03:20:00 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1721164994&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=fbcd0frelftNm0fKdCTTAPzeu2H6EMawHdon3hEHLd0%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1721164994&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=fbcd0frelftNm0fKdCTTAPzeu2H6EMawHdon3hEHLd0%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Etag': 'W/"118-P3iKcVpIgCj9HqYeOOrGLX8qJVc"', 'Via': '1.1 vegur', 'Cache-Control': 'max-age=14400', 'CF-Cache-Status': 'HIT', 'Age': '3626', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '8aa9f879cc425213-UDI', 'Content-Encoding': 'gzip'} 
+ body={"data":{"id":1,"email":"george.bluth@reqres.in","first_name":"George","last_name":"Bluth","avatar":"https://reqres.in/img/faces/1-image.jpg"},"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}} 
+ </msg>
+<msg time="2024-07-29T00:19:34.096325" level="INFO">C:\Users\wesle\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py:1103: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2024-07-29T00:19:34.096325" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>${url}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.010982" elapsed="0.086345"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.097327" level="INFO">Solicitação GET: url=https://reqres.in/api/users/1</msg>
+<arg>Solicitação GET: url=${BASE_URL}${url}</arg>
+<arg>level=INFO</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.097327" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.097327" level="INFO">Resposta GET: 200</msg>
+<arg>Resposta GET: ${response.status_code}</arg>
+<arg>level=INFO</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.097327" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.098328" level="INFO">Resposta GET: {"data":{"id":1,"email":"george.bluth@reqres.in","first_name":"George","last_name":"Bluth","avatar":"https://reqres.in/img/faces/1-image.jpg"},"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}}</msg>
+<arg>Resposta GET: ${response.text}</arg>
+<arg>level=INFO</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.097327" elapsed="0.001001"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.098328" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.098328" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.099328" level="INFO">${corpo} = {'data': {'id': 1, 'email': 'george.bluth@reqres.in', 'first_name': 'George', 'last_name': 'Bluth', 'avatar': 'https://reqres.in/img/faces/1-image.jpg'}, 'support': {'url': 'https://reqres.in/#support...</msg>
+<var>${corpo}</var>
+<arg>json.loads('''${response.text}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.098328" elapsed="0.001000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${corpo}</arg>
+<arg>data</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.099328" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${corpo['data']}</value>
+<status status="PASS" start="2024-07-29T00:19:34.099328" elapsed="0.000000"/>
+</return>
+<msg time="2024-07-29T00:19:34.099328" level="INFO">${corpo_consultar} = {'id': 1, 'email': 'george.bluth@reqres.in', 'first_name': 'George', 'last_name': 'Bluth', 'avatar': 'https://reqres.in/img/faces/1-image.jpg'}</msg>
+<var>${corpo_consultar}</var>
+<arg>${ID_USUARIO_LISTADO}</arg>
+<status status="PASS" start="2024-07-29T00:19:34.009981" elapsed="0.089347"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.100329" level="INFO">Dados do usuário consultado: {'id': 1, 'email': 'george.bluth@reqres.in', 'first_name': 'George', 'last_name': 'Bluth', 'avatar': 'https://reqres.in/img/faces/1-image.jpg'}</msg>
+<arg>Dados do usuário consultado: ${corpo_consultar}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.099328" elapsed="0.001001"/>
+</kw>
+<kw name="Atualizar Usuário" owner="keywords_api">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-07-29T00:19:34.100329" level="INFO">Creating Session using : alias=api, url=https://reqres.in/api, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>api</arg>
+<arg>${BASE_URL}</arg>
+<arg>verify=False</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-07-29T00:19:34.100329" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.101330" level="INFO">${url} = /users/1</msg>
+<var>${url}</var>
+<arg>/users/${id_usuario}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.101330" elapsed="0.000000"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.101330" level="INFO">${corpo} = {'name': 'NomeTesteAtualizado', 'job': 'TrabalhoTesteAtualizado'}</msg>
+<var>${corpo}</var>
+<arg>name=${nome}</arg>
+<arg>job=${trabalho}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.101330" elapsed="0.000000"/>
+</kw>
+<kw name="PUT On Session" owner="RequestsLibrary">
+<msg time="2024-07-29T00:19:34.617288" level="INFO">PUT Request : url=https://reqres.in/api/users/1 
+ path_url=/api/users/1 
+ headers={'User-Agent': 'python-requests/2.32.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '65', 'Content-Type': 'application/json'} 
+ body=b'{"name": "NomeTesteAtualizado", "job": "TrabalhoTesteAtualizado"}' 
+ </msg>
+<msg time="2024-07-29T00:19:34.617288" level="INFO">PUT Response : url=https://reqres.in/api/users/1 
+ status=200, reason=OK 
+ headers={'Date': 'Mon, 29 Jul 2024 03:20:00 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1722223200&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=fIrjMqCXdMUyJHLUXwnGU%2BRuwspgTIICLh%2FfwjoNmk0%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1722223200&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=fIrjMqCXdMUyJHLUXwnGU%2BRuwspgTIICLh%2FfwjoNmk0%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Etag': 'W/"65-C2sE8QoukbdMWkRTT2qr0YiDHGA"', 'Via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '8aa9f87a4c739411-UDI', 'Content-Encoding': 'gzip'} 
+ body={"name":"NomeTesteAtualizado","job":"TrabalhoTesteAtualizado","updatedAt":"2024-07-29T03:20:00.697Z"} 
+ </msg>
+<msg time="2024-07-29T00:19:34.617288" level="INFO">C:\Users\wesle\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py:1103: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2024-07-29T00:19:34.618287" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>${url}</arg>
+<arg>json=${corpo}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.101330" elapsed="0.516957"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.618287" level="INFO">200</msg>
+<arg>${response.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.618287" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.619288" level="INFO">{"name":"NomeTesteAtualizado","job":"TrabalhoTesteAtualizado","updatedAt":"2024-07-29T03:20:00.697Z"}</msg>
+<arg>${response.text}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.619288" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.619288" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.619288" elapsed="0.001001"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.620289" level="INFO">${corpo} = {'name': 'NomeTesteAtualizado', 'job': 'TrabalhoTesteAtualizado', 'updatedAt': '2024-07-29T03:20:00.697Z'}</msg>
+<var>${corpo}</var>
+<arg>json.loads('''${response.text}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.620289" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${corpo}</value>
+<status status="PASS" start="2024-07-29T00:19:34.620289" elapsed="0.000000"/>
+</return>
+<msg time="2024-07-29T00:19:34.620289" level="INFO">${corpo_atualizar} = {'name': 'NomeTesteAtualizado', 'job': 'TrabalhoTesteAtualizado', 'updatedAt': '2024-07-29T03:20:00.697Z'}</msg>
+<var>${corpo_atualizar}</var>
+<arg>${ID_USUARIO_LISTADO}</arg>
+<arg>${NOME_ATUALIZADO}</arg>
+<arg>${TRABALHO_ATUALIZADO}</arg>
+<status status="PASS" start="2024-07-29T00:19:34.100329" elapsed="0.519960"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.621290" level="INFO">Dados do usuário atualizados: {'name': 'NomeTesteAtualizado', 'job': 'TrabalhoTesteAtualizado', 'updatedAt': '2024-07-29T03:20:00.697Z'}</msg>
+<arg>Dados do usuário atualizados: ${corpo_atualizar}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.621290" elapsed="0.000000"/>
+</kw>
+<kw name="Consultar Usuário" owner="keywords_api">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-07-29T00:19:34.621290" level="INFO">Creating Session using : alias=api, url=https://reqres.in/api, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>api</arg>
+<arg>${BASE_URL}</arg>
+<arg>verify=False</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-07-29T00:19:34.621290" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.622291" level="INFO">${url} = /users/1</msg>
+<var>${url}</var>
+<arg>/users/${id_usuario}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.622291" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2024-07-29T00:19:34.712693" level="INFO">GET Request : url=https://reqres.in/api/users/1 
+ path_url=/api/users/1 
+ headers={'User-Agent': 'python-requests/2.32.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2024-07-29T00:19:34.712693" level="INFO">GET Response : url=https://reqres.in/api/users/1 
+ status=200, reason=OK 
+ headers={'Date': 'Mon, 29 Jul 2024 03:20:00 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1721164994&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=fbcd0frelftNm0fKdCTTAPzeu2H6EMawHdon3hEHLd0%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1721164994&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=fbcd0frelftNm0fKdCTTAPzeu2H6EMawHdon3hEHLd0%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Etag': 'W/"118-P3iKcVpIgCj9HqYeOOrGLX8qJVc"', 'Via': '1.1 vegur', 'Cache-Control': 'max-age=14400', 'CF-Cache-Status': 'HIT', 'Age': '3626', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '8aa9f87d9ed19417-UDI', 'Content-Encoding': 'gzip'} 
+ body={"data":{"id":1,"email":"george.bluth@reqres.in","first_name":"George","last_name":"Bluth","avatar":"https://reqres.in/img/faces/1-image.jpg"},"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}} 
+ </msg>
+<msg time="2024-07-29T00:19:34.712693" level="INFO">C:\Users\wesle\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py:1103: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2024-07-29T00:19:34.712693" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>${url}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.622291" elapsed="0.090402"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.713695" level="INFO">Solicitação GET: url=https://reqres.in/api/users/1</msg>
+<arg>Solicitação GET: url=${BASE_URL}${url}</arg>
+<arg>level=INFO</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.712693" elapsed="0.001002"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.713695" level="INFO">Resposta GET: 200</msg>
+<arg>Resposta GET: ${response.status_code}</arg>
+<arg>level=INFO</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.713695" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.714696" level="INFO">Resposta GET: {"data":{"id":1,"email":"george.bluth@reqres.in","first_name":"George","last_name":"Bluth","avatar":"https://reqres.in/img/faces/1-image.jpg"},"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}}</msg>
+<arg>Resposta GET: ${response.text}</arg>
+<arg>level=INFO</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.713695" elapsed="0.001001"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.714696" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.714696" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.714696" level="INFO">${corpo} = {'data': {'id': 1, 'email': 'george.bluth@reqres.in', 'first_name': 'George', 'last_name': 'Bluth', 'avatar': 'https://reqres.in/img/faces/1-image.jpg'}, 'support': {'url': 'https://reqres.in/#support...</msg>
+<var>${corpo}</var>
+<arg>json.loads('''${response.text}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.714696" elapsed="0.001000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${corpo}</arg>
+<arg>data</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.715696" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${corpo['data']}</value>
+<status status="PASS" start="2024-07-29T00:19:34.715696" elapsed="0.000000"/>
+</return>
+<msg time="2024-07-29T00:19:34.715696" level="INFO">${corpo_consultar_atualizado} = {'id': 1, 'email': 'george.bluth@reqres.in', 'first_name': 'George', 'last_name': 'Bluth', 'avatar': 'https://reqres.in/img/faces/1-image.jpg'}</msg>
+<var>${corpo_consultar_atualizado}</var>
+<arg>${ID_USUARIO_LISTADO}</arg>
+<status status="PASS" start="2024-07-29T00:19:34.621290" elapsed="0.094406"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.715696" level="INFO">Dados do usuário atualizados após consulta: {'id': 1, 'email': 'george.bluth@reqres.in', 'first_name': 'George', 'last_name': 'Bluth', 'avatar': 'https://reqres.in/img/faces/1-image.jpg'}</msg>
+<arg>Dados do usuário atualizados após consulta: ${corpo_consultar_atualizado}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.715696" elapsed="0.000000"/>
+</kw>
+<kw name="Excluir Usuário" owner="keywords_api">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-07-29T00:19:34.716697" level="INFO">Creating Session using : alias=api, url=https://reqres.in/api, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>api</arg>
+<arg>${BASE_URL}</arg>
+<arg>verify=False</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-07-29T00:19:34.716697" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-29T00:19:34.716697" level="INFO">${url} = /users/1</msg>
+<var>${url}</var>
+<arg>/users/${id_usuario}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.716697" elapsed="0.000000"/>
+</kw>
+<kw name="DELETE On Session" owner="RequestsLibrary">
+<msg time="2024-07-29T00:19:35.244533" level="INFO">DELETE Request : url=https://reqres.in/api/users/1 
+ path_url=/api/users/1 
+ headers={'User-Agent': 'python-requests/2.32.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2024-07-29T00:19:35.244533" level="INFO">DELETE Response : url=https://reqres.in/api/users/1 
+ status=204, reason=No Content 
+ headers={'Date': 'Mon, 29 Jul 2024 03:20:01 GMT', 'Content-Length': '0', 'Connection': 'keep-alive', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1722223201&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=w6%2F96HPnYKBXpCFR1AssqwivlaWK02G3lykax8D5iD4%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1722223201&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=w6%2F96HPnYKBXpCFR1AssqwivlaWK02G3lykax8D5iD4%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Etag': 'W/"2-vyGp6PvFo4RvsFtPoIWeCReyIC8"', 'Via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Server': 'cloudflare', 'CF-RAY': '8aa9f87e2c8d940e-UDI'} 
+ body=None 
+ </msg>
+<msg time="2024-07-29T00:19:35.244533" level="INFO">C:\Users\wesle\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py:1103: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2024-07-29T00:19:35.245557" level="INFO">${response} = &lt;Response [204]&gt;</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>${url}</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-07-29T00:19:34.716697" elapsed="0.528860"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:35.245557" level="INFO">204</msg>
+<arg>${response.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:35.245557" elapsed="0.000989"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:35.246546" level="INFO"/>
+<arg>${response.text}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:35.246546" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-07-29T00:19:35.247547" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>204</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-07-29T00:19:35.246546" elapsed="0.001001"/>
+</kw>
+<arg>${ID_USUARIO_LISTADO}</arg>
+<status status="PASS" start="2024-07-29T00:19:34.716697" elapsed="0.530850"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-07-29T00:19:35.247547" level="INFO">Teste completo finalizado.</msg>
+<arg>Teste completo finalizado.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-07-29T00:19:35.247547" elapsed="0.000000"/>
+</kw>
+<doc>Cria, consulta, atualiza e exclui um usuário, validando cada passo.</doc>
+<status status="PASS" start="2024-07-29T00:19:33.346923" elapsed="1.901625"/>
+</test>
+<status status="PASS" start="2024-07-29T00:19:32.903520" elapsed="2.346029"/>
+</suite>
+<status status="PASS" start="2024-07-29T00:19:32.902520" elapsed="2.347029"/>
+</suite>
+<suite id="s1-s2" name="Ui" source="C:\Users\wesle\Documents\DesafioAutomacao\tests\ui">
+<suite id="s1-s2-s1" name="Desafio Ui" source="C:\Users\wesle\Documents\DesafioAutomacao\tests\ui\desafio_ui.robot">
+<test id="s1-s2-s1-t1" name="Teste Completo UI" line="11">
+<kw name="Acessar a página de login" owner="keywords_ui">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:35.397683" level="INFO">Opening browser 'chrome' to base url 'https://automationexercise.com/login'.</msg>
+<arg>${BASE_URL}</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-07-29T00:19:35.397683" elapsed="5.753412"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2024-07-29T00:19:41.151095" elapsed="0.029254"/>
+</kw>
+<status status="PASS" start="2024-07-29T00:19:35.397683" elapsed="5.783668"/>
+</kw>
+<kw name="Preencher campos com dados randômicos" owner="keywords_ui">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//input[@data-qa='signup-name']</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-07-29T00:19:41.181351" elapsed="0.016014"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:41.198366" level="INFO">Typing text 'q1okh7qu' into text field 'xpath=//input[@data-qa='signup-name']'.</msg>
+<arg>xpath=//input[@data-qa='signup-name']</arg>
+<arg>${RANDOM_NAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-07-29T00:19:41.197365" elapsed="0.062057"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//input[@data-qa='signup-email']</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-07-29T00:19:41.259422" elapsed="0.013011"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:41.272433" level="INFO">Typing text 'nwt5i8ln@example.com' into text field 'xpath=//input[@data-qa='signup-email']'.</msg>
+<arg>xpath=//input[@data-qa='signup-email']</arg>
+<arg>${RANDOM_EMAIL}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-07-29T00:19:41.272433" elapsed="0.052048"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//button[@data-qa='signup-button']</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-07-29T00:19:41.324481" elapsed="0.012010"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:41.336491" level="INFO">Clicking button 'xpath=//button[@data-qa='signup-button']'.</msg>
+<arg>xpath=//button[@data-qa='signup-button']</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-07-29T00:19:41.336491" elapsed="0.878444"/>
+</kw>
+<status status="PASS" start="2024-07-29T00:19:41.181351" elapsed="1.033584"/>
+</kw>
+<kw name="Inserir informações da conta" owner="keywords_ui">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//input[@name='password']</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-07-29T00:19:42.215936" elapsed="0.028025"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:42.243961" level="INFO">Typing text 'm5jjwd4z4w' into text field 'xpath=//input[@name='password']'.</msg>
+<arg>xpath=//input[@name='password']</arg>
+<arg>${RANDOM_PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-07-29T00:19:42.243961" elapsed="0.080072"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//select[@id='days']</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-07-29T00:19:42.324033" elapsed="0.013014"/>
+</kw>
+<kw name="Select From List By Value" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:42.337047" level="INFO">Selecting options from selection list 'xpath=//select[@id='days']' by value 31.</msg>
+<arg>xpath=//select[@id='days']</arg>
+<arg>${RANDOM_DAY}</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<status status="PASS" start="2024-07-29T00:19:42.337047" elapsed="0.197177"/>
+</kw>
+<kw name="Select From List By Value" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:42.535225" level="INFO">Selecting options from selection list 'xpath=//select[@id='months']' by value 2.</msg>
+<arg>xpath=//select[@id='months']</arg>
+<arg>${RANDOM_MONTH}</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<status status="PASS" start="2024-07-29T00:19:42.534224" elapsed="0.058053"/>
+</kw>
+<kw name="Select From List By Value" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:42.593278" level="INFO">Selecting options from selection list 'xpath=//select[@id='years']' by value 1975.</msg>
+<arg>xpath=//select[@id='years']</arg>
+<arg>${RANDOM_YEAR}</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<status status="PASS" start="2024-07-29T00:19:42.593278" elapsed="0.062057"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//input[@id='newsletter']</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-07-29T00:19:42.656336" elapsed="0.014012"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:42.671349" level="INFO">Executing JavaScript:
+document.querySelector('input[id="newsletter"]').click()
+Without any arguments.</msg>
+<arg>document.querySelector('input[id="newsletter"]').click()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-07-29T00:19:42.670348" elapsed="0.005447"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//input[@id='optin']</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-07-29T00:19:42.675795" elapsed="0.015693"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:42.692002" level="INFO">Executing JavaScript:
+document.querySelector('input[id="optin"]').click()
+Without any arguments.</msg>
+<arg>document.querySelector('input[id="optin"]').click()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-07-29T00:19:42.692002" elapsed="0.004152"/>
+</kw>
+<status status="PASS" start="2024-07-29T00:19:42.214935" elapsed="0.481737"/>
+</kw>
+<kw name="Inserir informações de endereço" owner="keywords_ui">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//input[@name='first_name']</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-07-29T00:19:42.697188" elapsed="0.014876"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:42.712064" level="INFO">Typing text 'q1okh7qu' into text field 'xpath=//input[@name='first_name']'.</msg>
+<arg>xpath=//input[@name='first_name']</arg>
+<arg>${RANDOM_NAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-07-29T00:19:42.712064" elapsed="0.095692"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:42.808757" level="INFO">Typing text 'q1okh7qu' into text field 'xpath=//input[@name='last_name']'.</msg>
+<arg>xpath=//input[@name='last_name']</arg>
+<arg>${RANDOM_NAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-07-29T00:19:42.807756" elapsed="0.083609"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:42.892366" level="INFO">Typing text 'Google' into text field 'xpath=//input[@name='company']'.</msg>
+<arg>xpath=//input[@name='company']</arg>
+<arg>${RANDOM_COMPANY}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-07-29T00:19:42.891365" elapsed="0.107096"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:42.999463" level="INFO">Typing text 'Avenida Ipiranga, 5000, São Paulo' into text field 'xpath=//input[@name='address1']'.</msg>
+<arg>xpath=//input[@name='address1']</arg>
+<arg>${RANDOM_ADDRESS}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-07-29T00:19:42.998461" elapsed="0.085078"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:43.084540" level="INFO">Typing text 'Apt bjn' into text field 'xpath=//input[@name='address2']'.</msg>
+<arg>xpath=//input[@name='address2']</arg>
+<arg>${RANDOM_ADDRESS2}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-07-29T00:19:43.084540" elapsed="0.057052"/>
+</kw>
+<kw name="Select From List By Value" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:43.142592" level="INFO">Selecting options from selection list 'xpath=//select[@name='country']' by value India.</msg>
+<arg>xpath=//select[@name='country']</arg>
+<arg>India</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<status status="PASS" start="2024-07-29T00:19:43.142592" elapsed="0.029028"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:43.172620" level="INFO">Typing text 'São Paulo' into text field 'xpath=//input[@name='state']'.</msg>
+<arg>xpath=//input[@name='state']</arg>
+<arg>São Paulo</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-07-29T00:19:43.171620" elapsed="0.110099"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:43.282720" level="INFO">Typing text 'São Paulo' into text field 'xpath=//input[@name='city']'.</msg>
+<arg>xpath=//input[@name='city']</arg>
+<arg>São Paulo</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-07-29T00:19:43.282720" elapsed="0.079072"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:43.362792" level="INFO">Typing text '18117639' into text field 'xpath=//input[@name='zipcode']'.</msg>
+<arg>xpath=//input[@name='zipcode']</arg>
+<arg>${RANDOM_ZIP}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-07-29T00:19:43.362792" elapsed="0.064059"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:43.426851" level="INFO">Typing text '80757618441' into text field 'xpath=//input[@name='mobile_number']'.</msg>
+<arg>xpath=//input[@name='mobile_number']</arg>
+<arg>${RANDOM_PHONE}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-07-29T00:19:43.426851" elapsed="0.076068"/>
+</kw>
+<status status="PASS" start="2024-07-29T00:19:42.697188" elapsed="0.806732"/>
+</kw>
+<kw name="Criar conta e validar mensagem" owner="keywords_ui">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//button[@data-qa='create-account']</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-07-29T00:19:43.503920" elapsed="0.014014"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:43.517934" level="INFO">Executing JavaScript:
+window.scrollBy(0, 1000)
+Without any arguments.</msg>
+<arg>window.scrollBy(0, 1000)</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-07-29T00:19:43.517934" elapsed="0.004003"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:43.521937" level="INFO">Executing JavaScript:
+document.querySelector('button[data-qa="create-account"]').click()
+Without any arguments.</msg>
+<arg>document.querySelector('button[data-qa="create-account"]').click()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-07-29T00:19:43.521937" elapsed="1.125924"/>
+</kw>
+<arg>${True}</arg>
+<arg>Execute JavaScript</arg>
+<arg>document.querySelector('button[data-qa="create-account"]').click()</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-07-29T00:19:43.521937" elapsed="1.125924"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//p[contains(text(),'Congratulations! Your new account has been successfully created!')]</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-07-29T00:19:44.647861" elapsed="0.020018"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2024-07-29T00:19:44.680892" level="INFO">Element 'xpath=//p[contains(text(),'Congratulations! Your new account has been successfully created!')]' contains text 'Congratulations! Your new account has been successfully created!'.</msg>
+<arg>xpath=//p[contains(text(),'Congratulations! Your new account has been successfully created!')]</arg>
+<arg>${EXPECTED_MESSAGE}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2024-07-29T00:19:44.667879" elapsed="0.013013"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-07-29T00:19:44.680892" elapsed="2.124313"/>
+</kw>
+<status status="PASS" start="2024-07-29T00:19:43.503920" elapsed="3.301285"/>
+</kw>
+<doc>Teste completo de UI</doc>
+<status status="PASS" start="2024-07-29T00:19:35.396682" elapsed="11.408523"/>
+</test>
+<status status="PASS" start="2024-07-29T00:19:35.252551" elapsed="11.553666"/>
+</suite>
+<status status="PASS" start="2024-07-29T00:19:35.250550" elapsed="11.556667"/>
+</suite>
+<status status="PASS" start="2024-07-29T00:19:32.876497" elapsed="13.931722"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Api">Tests.Api</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1-s1" name="Desafio Api">Tests.Api.Desafio Api</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s2" name="Ui">Tests.Ui</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s2-s1" name="Desafio Ui">Tests.Ui.Desafio Ui</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2024-07-29T00:19:32.903520" level="ERROR">Error in file 'C:\Users\wesle\Documents\DesafioAutomacao\tests\api\desafio_api.robot' on line 10: Setting variable '${TRABALHO_ATUALIZADO} TrabalhoTesteAtualizado' failed: Invalid variable name '${TRABALHO_ATUALIZADO} TrabalhoTesteAtualizado'.</msg>
+</errors>
+</robot>
